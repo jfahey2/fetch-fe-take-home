@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgSwitch, NgSwitchDefault, NgSwitchCase } from '@angular/common';
 import { LayoutComponent } from './core/layout/layout.component';
@@ -20,6 +20,16 @@ import { LayoutComponent } from './core/layout/layout.component';
     LayoutComponent
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  ngOnInit() {
+    if (isDevMode()) {
+      console.log('Development!');
+    } else {
+      console.log('Production!');
+    }
+  }
+
+
   title = 'fetch-fe-take-home';
 }
