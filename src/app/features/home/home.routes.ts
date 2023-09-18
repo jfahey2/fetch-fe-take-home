@@ -1,12 +1,12 @@
 import { provideHttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { authGuard } from 'src/app/core/guards/auth.guard';
+import { HomeComponent } from './components/home.component';
 
 export default [
   {
     path: '',
-    pathMatch: 'full',
-    providers: [provideHttpClient()]
+    pathMatch: 'prefix',
+        providers: [provideHttpClient()],
+    component: HomeComponent,
   }
 ] as Route[];

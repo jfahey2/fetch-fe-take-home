@@ -1,11 +1,13 @@
 import { provideHttpClient } from "@angular/common/http";
 import { Route } from "@angular/router";
+import { DogsComponent } from "./components/dogs.component";
 
 export default [
     {
         path: '',
         pathMatch: 'prefix',
         providers: [provideHttpClient(),],
+        component: DogsComponent,
 
     },
 ] as Route[]
