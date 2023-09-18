@@ -1,7 +1,7 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgSwitch, NgSwitchDefault, NgSwitchCase } from '@angular/common';
-import { LayoutComponent } from './core/layout/layout.component';
+import { LayoutComponent } from './core/components/layout/layout.component';
 
 @Component({
   selector: 'app-root',
