@@ -1,0 +1,25 @@
+<form class="form__login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label class="form__label">
+    Name
+    <input class="form__input" id="name" type="text" class="form-control" formControlName="name" />
+  </label>
+  <app-error-message
+    class="error-message"
+    [control]="loginForm.get('name')!"></app-error-message>
+
+  <label class="form__label">
+    Email
+    <input
+      id="email"
+      class="form__input"
+      label="Email"
+      type="text"
+      class="form-control"
+      formControlName="email" />
+  </label>
+  <app-error-message
+    class="error-message"
+    [control]="loginForm.get('email')!"></app-error-message>
+
+  <button class="form__button" type="submit" [disabled]="!loginForm.valid">Login</button>
+</form>
