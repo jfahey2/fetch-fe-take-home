@@ -1,7 +1,12 @@
 <form class="form__login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <label class="form__label">
     Name
-    <input class="form__input" id="name" type="text" class="form-control" formControlName="name" />
+    <input
+      class="form__input"
+      id="name"
+      type="text"
+      class="form-control"
+      formControlName="name" />
   </label>
   <app-error-message
     class="error-message"
@@ -21,7 +26,9 @@
     class="error-message"
     [control]="loginForm.get('email')!"></app-error-message>
 
-  <button class="form__button" type="submit" [disabled]="!loginForm.valid">Login</button>
+  <button class="form__button" type="submit" [disabled]="!loginForm.valid">
+    Login
+  </button>
 </form>
-<button (click)="isLog()">Check log in status</button>
-<button (click)="logO()">logout</button>
+<button (click)="isLoggedIn()">Check log in status</button>
+<button (click)="onLogout()">logout</button>

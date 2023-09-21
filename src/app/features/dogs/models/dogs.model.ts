@@ -6,3 +6,7 @@ export interface Dog {
   zip_code: string;
   breed: string;
 }
+
+export interface DogBreed {
+  breed: string
+}

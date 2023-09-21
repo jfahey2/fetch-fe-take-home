@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthClient {
   constructor(private http: HttpClient) {}
@@ -14,7 +14,7 @@ export class AuthClient {
       environment.apiUrl + '/auth/login',
       {
         name: name,
-        email: email
+        email: email,
       },
       { withCredentials: true, responseType: 'text' }
     );
@@ -25,7 +25,7 @@ export class AuthClient {
       environment.apiUrl + '/auth/logout',
       {
         name: name,
-        email: email
+        email: email,
       },
 
       { withCredentials: true, responseType: 'text' }

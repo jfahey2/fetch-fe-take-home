@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { ErrorMessageComponent } from 'src/app/shared/components/error-message/error-message.component';
 import { AuthService } from '../../services/auth.service';
@@ -15,35 +15,34 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ErrorMessageComponent],
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  styleUrls: ['./login-form.component.scss'],
 })
-export class LoginFormComponent  {
+export class LoginFormComponent {
   loginForm: FormGroup;
 
-  fb: FormBuilder = inject(FormBuilder);
+  // fb: FormBuilder = inject(FormBuilder);
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder
+  ) {
     this.loginForm = this.fb.group({
-      name: new FormControl('', [
-        Validators.required,
-      ]),
+      name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
     });
   }
 
-  isLog() {
+  isLoggedIn() {
     const isLogg = this.authService.isLoggedIn();
-    console.log(isLogg)
-}
-  logO() {
-    const logOut = this.authService.logout();
-}
+    console.log(isLogg);
+  }
+  onLogout() {
+    this.authService.logout();
+  }
   public onSubmit() {
     this.authService.login(
-      this.loginForm.get('name')!.value,
-      this.loginForm.get('email')!.value
-    )
-    console.log('c')
+      this.loginForm.get('name')?.value,
+      this.loginForm.get('email')?.value
+    );
   }
-
 }
