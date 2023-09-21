@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthClient } from './auth-client.service';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private tokenKey = 'token';
@@ -25,9 +25,7 @@ export class AuthService {
   public login(name: string, email: string): void {
     this.authClient.login(name, email).subscribe((token) => {
       localStorage.setItem(this.tokenKey, token);
-
       this.currentUser$.next({ name: name, email: email });
-
       this.router.navigate(['/']);
     });
   }
@@ -47,7 +45,6 @@ export class AuthService {
   }
 
   public getToken(): string | null {
-
     return this.isLoggedIn() ? localStorage.getItem(this.tokenKey) : null;
   }
 }

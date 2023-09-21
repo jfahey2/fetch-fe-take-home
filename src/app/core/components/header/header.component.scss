@@ -1,10 +1,14 @@
-@use '../../../../styles/utilities/variables' as v;
+@use '../../../../styles/utilities/variables'as v;
 
 .header {
-    backdrop-filter: blur(3px);
-    padding-left   : 1rem;
-    padding-right  : 4rem;
-    width          : 100%;
+    backdrop-filter : blur(3px);
+    padding-left    : 1rem;
+    padding-right   : 4rem;
+    padding-bottom  : 1rem;
+    margin-bottom   : 2rem;
+    width           : 100%;
+    background-color: v.$primary-black;
+    color           : v.$primary-white;
 
 
     &__title {
@@ -17,6 +21,15 @@
         display        : flex;
         justify-content: space-between;
         align-items    : center;
-        color          : v.$primary-black;
+    }
+
+    &__nav-list {
+        list-style: none;
+    }
+
+    &__nav-item {}
+
+    &__link {
+        color: inherit;
     }
 }

@@ -7,7 +7,7 @@ import { LoginComponent } from 'src/app/core/auth/login/login.component';
   standalone: true,
   imports: [CommonModule, LoginComponent],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
 
