@@ -1,21 +1,41 @@
-import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { inject } from '@angular/core';
+import { filter, map } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  return inject(AuthService).canActivate(inject(AuthToken))
+export const authGuard = () => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  authService.updateLoginStatus();
+
+  return authService.isLoggedIn$.pipe(
+    map((isLoggedIn) => {
+      if (isLoggedIn) {
+        console.log("auth true")
+        return true;
+      }
+      console.log("auth false")
+
+      return router.createUrlTree(['login']);
+
+    })
+  );
 };
-// export function authenticationGuardArrow = () => inject(AuthService).isAuthenticated()
 
-// export function authenticationGuard(): CanActivateFn {
-//   return () => {
-//     const oauthService: AuthService = inject(AuthService);
+// return authService.currentUser$.pipe(
+//   map((user) =>  user),
+//   map((isLoggedIn) => isLoggedIn ||
+//   router.createUrlTree(['login']))
 
-//     if (oauthService.hasAccess() ) {
-//       return true;
+//   filter((currentUser) => currentUser !== undefined),
+
+//   map((currentUser => {
+//     if (!currentUser) {
+//       router.navigateByUrl('');
+//       console.log('guard !currentuser ')
+//       return false;
 //     }
-//     oauthService.login();
-//     return false;
-//   };
-// }
+//     console.log('guard true ')
 
+//     return true;
+//   }))
