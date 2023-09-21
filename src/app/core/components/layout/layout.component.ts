@@ -12,6 +12,6 @@ import { HeaderComponent } from '../header/header.component';
       <ng-content></ng-content>
     </main>
   `,
-  styleUrls: ['./layout.component.sass']
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {}

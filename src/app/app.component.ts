@@ -10,14 +10,15 @@ import { LayoutComponent } from './core/components/layout/layout.component';
       <router-outlet></router-outlet>
     </app-layout>
   `,
-  styleUrls: ['./app.component.sass'],
+  styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [
     NgSwitch,
     NgSwitchDefault,
     NgSwitchCase,
     RouterOutlet,
-    LayoutComponent
+    LayoutComponent,
+
   ]
 })
 export class AppComponent implements OnInit {

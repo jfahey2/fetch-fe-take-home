@@ -1,12 +1,21 @@
-import { provideHttpClient } from '@angular/common/http';
-import { Route } from '@angular/router';
-import { HomeComponent } from './components/home.component';
+import { provideHttpClient, withInterceptors, withRequestsMadeViaParent } from '@angular/common/http';
+import { Routes } from '@angular/router';
+import { LoginComponent } from '../../core/auth/login/login.component';
+import { authGuard } from 'src/app/core/guards/auth.guard';
+import { AuthInterceptor } from 'src/app/core/interceptors/auth.interceptor';
 
-export default [
+export const HomeRoutes: Routes = [
   {
     path: '',
-    pathMatch: 'prefix',
-        providers: [provideHttpClient()],
-    component: HomeComponent,
-  }
-] as Route[];
+    providers: [
+      provideHttpClient(
+        withRequestsMadeViaParent(),
+      ),
+    ],
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./components/home.component').then((x) => x.HomeComponent),
+
+  },
+
+];

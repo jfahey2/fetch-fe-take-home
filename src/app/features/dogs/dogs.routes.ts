@@ -1,16 +1,20 @@
-import { provideHttpClient } from "@angular/common/http";
-import { Route } from "@angular/router";
-import { DogsComponent } from "./components/dogs.component";
+import { provideHttpClient, withInterceptors, withRequestsMadeViaParent } from '@angular/common/http';
+import { Routes } from '@angular/router';
 
-export default [
-    {
-        path: '',
-        pathMatch: 'prefix',
-        providers: [provideHttpClient(),],
-        component: DogsComponent,
+export const DogsRoutes: Routes = [
+  {
+    path: '',
+    pathMatch: 'prefix',
+    providers: [
+      provideHttpClient(
+        withRequestsMadeViaParent(),
+      ),
+    ],
+    loadComponent: () => import('./components/dogs.component').then((x) => x.DogsComponent)
 
-    },
-] as Route[]
+  },
+];
+
 /*
 GET
 
